@@ -13,6 +13,10 @@ vim script to fold code blocks using regexp
 
     ![example1](https://raw.githubusercontent.com/ZSaberLv0/ZFVimFoldBlock/master/example1.png)
 
+* fold by xml tags `:ZFFoldBlock /(?<=<[a-z =\"_0-9]+> *\n).*/<\/[a-z0-9_]+>/` (with `othree/eregex.vim`)
+
+    ![example2](https://raw.githubusercontent.com/ZSaberLv0/ZFVimFoldBlock/master/example2.png)
+
 
 # how to use
 
