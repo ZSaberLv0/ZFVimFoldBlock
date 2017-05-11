@@ -19,7 +19,13 @@ vim script to fold code blocks using regexp
 1. use [Vundle](https://github.com/VundleVim/Vundle.vim) or any other plugin manager is recommended
 
     ```
-    Plugin `ZSaberLv0/ZFVimFoldBlock`
+    Plugin 'ZSaberLv0/ZFVimFoldBlock'
+    ```
+
+    when `othree/eregex.vim` installed (recommended), perl style regexp would be used instead of vim style
+
+    ```
+    Plugin 'othree/eregex.vim'
     ```
 
 1. `foldmethod` must be set to `manual`
