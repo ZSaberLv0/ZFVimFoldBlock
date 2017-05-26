@@ -1,9 +1,6 @@
 " ZFVimFoldBlock.vim - fold code blocks by regexp
 " Author:  ZSaberLv0 <http://zsaber.com/>
 
-if exists("g:ZFVimFoldBlock_loaded") && g:ZFVimFoldBlock_loaded != 1
-    finish
-endif
 let g:ZFVimFoldBlock_loaded = 1
 
 " whether disable E2v, 0 or 1
