@@ -4,9 +4,17 @@
 let g:ZFVimFoldBlock_loaded = 1
 
 " whether disable E2v, 0 or 1
-let g:ZFVimFoldBlock_disableE2v = 0
+if !exists('g:ZFVimFoldBlock_disableE2v')
+    let g:ZFVimFoldBlock_disableE2v = 0
+endif
 " whether auto set foldmethod to manual, 0 or 1
-let g:ZFVimFoldBlock_resetFoldmethodWhenUse = 1
+if !exists('g:ZFVimFoldBlock_resetFoldmethodWhenUse')
+    let g:ZFVimFoldBlock_resetFoldmethodWhenUse = 1
+endif
+" whether auto set foldminlines to 0, 0 or 1
+if !exists('g:ZFVimFoldBlock_resetFoldminlinesWhenUse')
+    let g:ZFVimFoldBlock_resetFoldminlinesWhenUse = 1
+endif
 
 " fold block by regexp
 function! s:ZF_FoldBlockHasE2v()
@@ -74,6 +82,10 @@ function! ZF_FoldBlock(expr)
         echo "invalid expr"
         call ZF_FoldBlockHelp()
         return
+    endif
+
+    if g:ZFVimFoldBlock_resetFoldminlinesWhenUse && &foldminlines != "0"
+        set foldminlines=0
     endif
 
     if g:ZFVimFoldBlock_resetFoldmethodWhenUse && &foldmethod != "manual"

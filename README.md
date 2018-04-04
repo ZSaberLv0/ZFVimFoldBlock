@@ -47,6 +47,9 @@ vim script to fold code blocks using regexp
     set foldminlines=0
     ```
 
+    by default, `foldminlines` would be set to `0` when `ZFFoldBlock` called,
+    you may disable it by `let g:ZFVimFoldBlock_resetFoldminlinesWhenUse=0`
+
 1. recommended to have these key map:
 
     ```
