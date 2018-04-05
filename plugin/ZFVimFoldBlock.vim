@@ -23,7 +23,7 @@ function! s:ZF_FoldBlockHasE2v()
     endif
 
     try
-        let dummy=E2v(".")
+        call E2v(".")
         return 1
     catch
         return 0
