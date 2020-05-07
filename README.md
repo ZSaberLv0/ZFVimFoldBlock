@@ -15,7 +15,7 @@ if you like my work, [check here](https://github.com/ZSaberLv0?utf8=%E2%9C%93&ta
 
     ![example1](https://raw.githubusercontent.com/ZSaberLv0/ZFVimFoldBlock/master/example1.png)
 
-* fold by xml tags `:ZFFoldBlock /(?<=<[a-z =\"_0-9]+> *\n).*/<\/[a-z0-9_]+>/` (with `othree/eregex.vim`)
+* fold by xml tags `:ZFFoldBlock /<([a-z0-9_:\.]+)/<\/\l1>/` (with `othree/eregex.vim`)
 
     ![example2](https://raw.githubusercontent.com/ZSaberLv0/ZFVimFoldBlock/master/example2.png)
 
@@ -157,4 +157,20 @@ you may force disable it by `let g:ZFVimFoldBlock_disableE2v = 1`
 * calling `ZFFoldBlock` would append fold instead of replace,
     before using the function,
     you may want to remove all fold by `zE` or `zD` manually
+
+* when fold with `/expr_l/expr_r/` format,
+    there's a special pattern for `expr_r` to reference submatches in `expr_l`
+    (similar to `:h /\1`),
+    the pattern format is `\lN`,
+    where `N` is `1~9`
+
+    for example, `/<([a-z]+)>/</\l1>/` would result:
+
+    ```
+    xxx   // not in fold
+    <aa>  // in fold
+      xxx // in fold
+    </aa> // in fold
+    xxx   // not in fold
+    ```
 
