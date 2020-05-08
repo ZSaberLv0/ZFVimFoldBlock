@@ -85,6 +85,17 @@ function! ZF_FoldBlock(expr)
     let expr = substitute(expr, '\\\\', '_t_bslash_t_', 'g')
     let expr = substitute(expr, '\\/', '_t_slash_t_', 'g')
     let expr = substitute(expr, '\\\$', '_t_dollar_t_', 'g')
+
+    " TAG_BACK_REF
+    let expr = substitute(expr, '\\8', '\\9', 'g')
+    let expr = substitute(expr, '\\7', '\\8', 'g')
+    let expr = substitute(expr, '\\6', '\\7', 'g')
+    let expr = substitute(expr, '\\5', '\\6', 'g')
+    let expr = substitute(expr, '\\4', '\\5', 'g')
+    let expr = substitute(expr, '\\3', '\\4', 'g')
+    let expr = substitute(expr, '\\2', '\\3', 'g')
+    let expr = substitute(expr, '\\1', '\\2', 'g')
+
     let exprList = split(expr, '/', 1)
     let expr_l = exprList[1]
     let expr_r = exprList[2]
@@ -102,11 +113,13 @@ function! ZF_FoldBlock(expr)
     let expr_r = substitute(expr_r, '\$', '\\%(\\n\\|$\\)\\@=', 'g') " \%(\n\|$\)\@=
     let expr_l = substitute(expr_l, '_t_dollar_t_', '\\\$', 'g')
     let expr_r = substitute(expr_r, '_t_dollar_t_', '\\\$', 'g')
-    if !empty(expr_l) && expr_l[0] != '^'
-        let expr_l = '^[^\n]\{-}' . expr_l " ^[^\n]*?
+    " wrapped with () to solve `a|b` pattern
+    " take care of `\1` TAG_BACK_REF
+    if !empty(expr_l)
+        let expr_l = '^[^\n]\{-}\(' . expr_l . '\)' " ^[^\n]*?
     endif
-    if !empty(expr_r) && expr_r[0] != '^'
-        let expr_r = '^[^\n]\{-}' . expr_r
+    if !empty(expr_r)
+        let expr_r = '^[^\n]\{-}\(' . expr_r . '\)'
     endif
 
     if strlen(expr_l) == 0 && strlen(expr_r) == 0
@@ -168,15 +181,14 @@ function! s:posToLine(lines, contents, lineOffsets, pos)
 endfunction
 function! s:exprBackRef(expr, matchlist)
     let expr = a:expr
-    let expr = substitute(expr, '\\l1', a:matchlist[1], 'g')
-    let expr = substitute(expr, '\\l2', a:matchlist[2], 'g')
-    let expr = substitute(expr, '\\l3', a:matchlist[3], 'g')
-    let expr = substitute(expr, '\\l4', a:matchlist[4], 'g')
-    let expr = substitute(expr, '\\l5', a:matchlist[5], 'g')
-    let expr = substitute(expr, '\\l6', a:matchlist[6], 'g')
-    let expr = substitute(expr, '\\l7', a:matchlist[7], 'g')
-    let expr = substitute(expr, '\\l8', a:matchlist[8], 'g')
-    let expr = substitute(expr, '\\l9', a:matchlist[9], 'g')
+    let expr = substitute(expr, '\\l1', a:matchlist[2], 'g')
+    let expr = substitute(expr, '\\l2', a:matchlist[3], 'g')
+    let expr = substitute(expr, '\\l3', a:matchlist[4], 'g')
+    let expr = substitute(expr, '\\l4', a:matchlist[5], 'g')
+    let expr = substitute(expr, '\\l5', a:matchlist[6], 'g')
+    let expr = substitute(expr, '\\l6', a:matchlist[7], 'g')
+    let expr = substitute(expr, '\\l7', a:matchlist[8], 'g')
+    let expr = substitute(expr, '\\l8', a:matchlist[9], 'g')
     return expr
 endfunction
 function! s:doFold(iL, iR)

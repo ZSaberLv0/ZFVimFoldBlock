@@ -15,7 +15,7 @@ if you like my work, [check here](https://github.com/ZSaberLv0?utf8=%E2%9C%93&ta
 
     ![example1](https://raw.githubusercontent.com/ZSaberLv0/ZFVimFoldBlock/master/example1.png)
 
-* fold by xml tags `:ZFFoldBlock /<([a-z0-9_:\.]+)/<\/\l1>/` (with `othree/eregex.vim`)
+* fold by xml tags `:ZFFoldBlock /<([a-z0-9_:\.]+)/<\/\l1>|\/>/` (with `othree/eregex.vim`)
 
     ![example2](https://raw.githubusercontent.com/ZSaberLv0/ZFVimFoldBlock/master/example2.png)
 
