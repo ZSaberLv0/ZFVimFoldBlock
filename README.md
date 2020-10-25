@@ -2,7 +2,8 @@
 
 vim script to fold code blocks using regexp
 
-if you like my work, [check here](https://github.com/ZSaberLv0?utf8=%E2%9C%93&tab=repositories&q=ZFVim) for a list of my vim plugins
+if you like my work, [check here](https://github.com/ZSaberLv0?utf8=%E2%9C%93&tab=repositories&q=ZFVim) for a list of my vim plugins,
+or [buy me a coffee](https://github.com/ZSaberLv0/ZSaberLv0)
 
 
 # preview
