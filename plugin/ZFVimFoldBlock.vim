@@ -50,6 +50,14 @@ function! s:ZF_FoldBlockHasE2v()
     endtry
 endfunction
 
+function! s:E2v(pattern)
+    if match(a:pattern, '^\\[vVmM]') == 0
+        return a:pattern
+    else
+        return E2v(a:pattern)
+    endif
+endfunction
+
 function! ZF_FoldBlockHelp()
     echo "sample: /from/to/[comment]"
     echo "multiline supported, use \\n for linebreak"
@@ -106,8 +114,8 @@ function! ZF_FoldBlock(expr)
     let expr_r = substitute(expr_r, '_t_slash_t_', '\\/', 'g')
 
     if s:ZF_FoldBlockHasE2v()
-        let expr_l = E2v(expr_l)
-        let expr_r = E2v(expr_r)
+        let expr_l = s:E2v(expr_l)
+        let expr_r = s:E2v(expr_r)
     endif
     let expr_l = substitute(expr_l, '\$', '\\%(\\n\\|$\\)\\@=', 'g') " (?=\n|$)
     let expr_r = substitute(expr_r, '\$', '\\%(\\n\\|$\\)\\@=', 'g') " \%(\n\|$\)\@=
